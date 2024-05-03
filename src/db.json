@@ -1,0 +1,268 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "user1",
+      "email": "test@gmail.com",
+      "password": "1234",
+      "token": "someauthtoken1",
+      "isEvaluator": false,
+      "evaluatorProfile": {
+        "bio": ""
+      }
+    },
+    {
+      "id": "2",
+      "username": "user2",
+      "email": "user2@example.com",
+      "password": "user2password",
+      "token": "someauthtoken2",
+      "isEvaluator": false,
+      "evaluatorProfile": {
+        "bio": ""
+      }
+    },
+    {
+      "id": "3",
+      "username": "Omar Alanazi",
+      "email": "ixembw@gmail.com",
+      "password": "123123",
+      "token": "token-0559xiouc",
+      "isEvaluator": false,
+      "evaluatorProfile": {
+        "bio": ""
+      }
+    },
+    {
+      "id": "22c5",
+      "username": "Salman",
+      "email": "salman@gmail.com",
+      "password": "123123",
+      "token": "token-c85uoixp7",
+      "isEvaluator": true,
+      "evaluatorProfile": {
+        "bio": ""
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "101",
+      "name": "Wireless Bluetooth Headphones",
+      "imgUrl": null,
+      "description": "High-quality wireless headphones with noise cancellation and up to 12 hours of battery life. High-quality wireless headphones with noise cancellation and up to 12 hours of battery life. High-quality wireless headphones with noise cancellation and up to 12 hours of battery life.",
+      "price": 10,
+      "sellerId": "3",
+      "sellerName": "Omar Alanazi",
+      "createdAt": "2024-04-20T12:34:56Z",
+      "isSold": false,
+      "delegationState": "Approved",
+      "evaluatorId": "22c5"
+    },
+    {
+      "id": "102",
+      "name": "Ergonomic Wireless Mouse",
+      "imgUrl": null,
+      "description": "Comfortable wireless mouse with adjustable DPI and silent click. Ideal for long hours of use.",
+      "price": 29.95,
+      "sellerId": "1",
+      "sellerName": "user1",
+      "createdAt": "2023-12-15T11:20:00Z",
+      "isSold": true,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "103",
+      "name": "Portable External SSD",
+      "imgUrl": null,
+      "description": "Compact and fast external SSD with 1TB capacity, perfect for quick file transfers.",
+      "price": 129.5,
+      "sellerId": "2",
+      "sellerName": "user2",
+      "createdAt": "2023-08-24T09:30:00Z",
+      "isSold": true,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "104",
+      "name": "Smart Fitness Tracker",
+      "imgUrl": null,
+      "description": "Advanced fitness tracker with heart rate and sleep monitoring, water-resistant, and 7-day battery life.",
+      "price": 123,
+      "sellerId": "3",
+      "sellerName": "Omar Alanazi",
+      "createdAt": "2023-05-20T08:45:00Z",
+      "isSold": true,
+      "delegationState": "Approved",
+      "evaluatorId": null
+    },
+    {
+      "id": "105",
+      "name": "LED Desk Lamp",
+      "imgUrl": null,
+      "description": "Stylish LED desk lamp with adjustable brightness and a touch-sensitive control panel.",
+      "price": 45.99,
+      "sellerId": "1",
+      "sellerName": "user1",
+      "createdAt": "2023-07-30T13:40:00Z",
+      "isSold": false,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "106",
+      "name": "Gourmet Coffee Beans",
+      "imgUrl": null,
+      "description": "Premium whole coffee beans, 1kg pack, sourced from sustainable farms in Colombia.",
+      "price": 22,
+      "sellerId": "2",
+      "sellerName": "user2",
+      "createdAt": "2023-11-11T16:05:00Z",
+      "isSold": false,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "107",
+      "name": "Wireless Charging Pad",
+      "imgUrl": null,
+      "description": "Sleek and fast wireless charging pad, compatible with all Qi-enabled devices.",
+      "price": 34.99,
+      "sellerId": "3",
+      "sellerName": "Omar Alanazi",
+      "createdAt": "2023-10-05T10:00:00Z",
+      "isSold": false,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "108",
+      "name": "Waterproof Bluetooth Speaker",
+      "imgUrl": null,
+      "description": "Portable and waterproof Bluetooth speaker, perfect for outdoor use, with 10-hour battery life.",
+      "price": 39.99,
+      "sellerId": "1",
+      "sellerName": "user1",
+      "createdAt": "2023-02-20T18:30:00Z",
+      "isSold": false,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "109",
+      "name": "Silicone Baking Mat",
+      "imgUrl": null,
+      "description": "Non-stick, reusable silicone baking mat. Ideal for baking cookies and other pastries.",
+      "price": 16.95,
+      "sellerId": "2",
+      "sellerName": "user2",
+      "createdAt": "2023-06-15T14:25:00Z",
+      "isSold": false,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    },
+    {
+      "id": "110",
+      "name": "Compact Travel Umbrella",
+      "imgUrl": null,
+      "description": "Lightweight and compact travel umbrella, windproof and quick-drying, with automatic open/close function.",
+      "price": 25.5,
+      "sellerId": "3",
+      "sellerName": "Omar Alanazi",
+      "createdAt": "2024-01-22T19:50:00Z",
+      "isSold": false,
+      "delegationState": "Independent",
+      "evaluatorId": null
+    }
+  ],
+  "payments": [
+    {
+      "id": "payment_1714384008659_502539",
+      "itemId": "102",
+      "userId": "3",
+      "itemName": "Ergonomic Wireless Mouse",
+      "totalPrice": 29.95,
+      "createdAt": "2024-04-29T09:46:48.659Z"
+    },
+    {
+      "id": "payment_1714426980887_311509",
+      "itemId": "103",
+      "userId": "3",
+      "itemName": "Portable External SSD",
+      "totalPrice": 129.5,
+      "createdAt": "2024-04-29T21:43:00.887Z"
+    },
+    {
+      "id": "payment_1714675905128_45224",
+      "itemId": "104",
+      "userId": "22c5",
+      "itemName": "Smart Fitness Tracker",
+      "totalPrice": 123,
+      "createdAt": "2024-05-02T18:51:45.128Z"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessments_1714256054469_497647",
+      "itemId": "101",
+      "evaluatorId": "22c5",
+      "name": "New Evaluation",
+      "message": "I think your product worth $10",
+      "price": 10,
+      "state": "Approved",
+      "createdAt": "2024-04-27T22:14:14.469Z"
+    },
+    {
+      "id": "assessments_1714264334232_284884",
+      "itemId": "101",
+      "evaluatorId": "22c5",
+      "name": "New Evaluation",
+      "message": "I think your product worth $10",
+      "price": 10,
+      "state": "Rejected",
+      "createdAt": "2024-04-28T00:32:14.232Z"
+    },
+    {
+      "id": "assessments_1714264334698_458781",
+      "itemId": "101",
+      "evaluatorId": "22c5",
+      "name": "New Evaluation",
+      "message": "I think your product worth $10",
+      "price": 10,
+      "state": "Rejected",
+      "createdAt": "2024-04-28T00:32:14.698Z"
+    },
+    {
+      "id": "assessments_1714264335478_585576",
+      "itemId": "101",
+      "evaluatorId": "22c5",
+      "name": "New Evaluation",
+      "message": "I think your product worth $10",
+      "price": 10,
+      "state": "Rejected",
+      "createdAt": "2024-04-28T00:32:15.478Z"
+    },
+    {
+      "id": "assessments_1714384299354_344839",
+      "itemId": "101",
+      "evaluatorId": "22c5",
+      "name": "New Evaluation",
+      "message": "I think your product worth $10",
+      "price": 10,
+      "state": "Rejected",
+      "createdAt": "2024-04-29T09:51:39.354Z"
+    },
+    {
+      "id": "assessments_1714675663028_643446",
+      "itemId": "104",
+      "evaluatorId": "22c5",
+      "name": "New Assessment ",
+      "message": "Testing a new assessment req, hopefully everything goes will",
+      "price": 123,
+      "state": "Approved",
+      "createdAt": "2024-05-02T18:47:43.028Z"
+    }
+  ]
+}
