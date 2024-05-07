@@ -7,6 +7,7 @@ import { MdVerified } from "react-icons/md";
 import { AuthResponse as User } from "../../api/useAPI";
 import { useState } from "react";
 import EditBioModal from "../../components/EditBioModal";
+import CustomAlert from "../../components/CustomAlert";
 
 interface ProfilePageProps {
 	userToPreview?: User;
@@ -14,6 +15,7 @@ interface ProfilePageProps {
 
 function ProfilePage({ userToPreview }: ProfilePageProps) {
 	const { username, email, isEvaluator, evaluatorProfile } = useAuthStore();
+	const [showLogoutModal, setShowLogoutModal] = useState(false);
 	const { handleLogout } = useAuth();
 	const [showBioModal, setShowBioModal] = useState(false);
 	const imagePlaceHolder = "/images/user-placeholder.png";
@@ -33,7 +35,7 @@ function ProfilePage({ userToPreview }: ProfilePageProps) {
 		<Container className="mt-5 border p-3 shadow text-center" style={{ maxWidth: "720px", borderRadius: "10px", position: "relative" }}>
 			{!userToPreview && (
 				<div className="position-absolute top-0 start-0 pt-3 ps-3 d-flex flex-column align-items-start" style={{ fontSize: "1.25rem" }}>
-					<div className="pointer-on-hover" onClick={handleLogout}>
+					<div className="pointer-on-hover" onClick={() => setShowLogoutModal(true)}>
 						<FaSignOutAlt color="red" /> Log out
 					</div>
 					<div className="pointer-on-hover" onClick={handlePaymentHistory}>
@@ -76,6 +78,18 @@ function ProfilePage({ userToPreview }: ProfilePageProps) {
 				</>
 			)}
 			{showBioModal && evaluatorProfile && <EditBioModal bio={evaluatorProfile.bio} setShowBioModal={setShowBioModal} />}
+			<CustomAlert
+				title="Log out"
+				message="Are you sure you want to log out of this account?"
+				show={showLogoutModal}
+				cancel={{ onClick: () => setShowLogoutModal(false) }}
+				confirm={{
+					variant: "danger",
+					onClick: () => {
+						handleLogout();
+						setShowLogoutModal(false);
+				}}}
+			/>
 		</Container>
 	);
 }
