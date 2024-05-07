@@ -5,14 +5,17 @@ import { Container } from "react-bootstrap";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 import FormButton from "../../components/FormButton";
 import useAuth from "../../hooks/useAuth";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
 	const initialValues = { email: "", password: "" };
 	const [showForgotPassword, setShowForgotPassword] = useState(false);
+	const [passwordShown, setPasswordShown] = useState(false);
 	const { handleLogin } = useAuth();
 
 	const showModal = () => setShowForgotPassword(true);
 	const hideModal = () => setShowForgotPassword(false);
+	const togglePasswordVisiblity = () => setPasswordShown(!passwordShown);
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
@@ -30,7 +33,7 @@ const LoginPage = () => {
 	};
 
 	return (
-		<Container className="mt-5 border p-3 m" style={{ maxWidth: "720px" }}>
+		<Container className="mt-5 border p-3" style={{ maxWidth: "720px" }}>
 			<h2 className="text-center">Login</h2>
 			<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 				{({ isSubmitting }) => (
@@ -44,7 +47,12 @@ const LoginPage = () => {
 
 						<div className="form-group">
 							<label htmlFor="password">Password</label>
-							<Field type="password" name="password" className="form-control" />
+							<div className="position-relative">
+								<Field type={passwordShown ? "text" : "password"} name="password" className="form-control" />
+								<span className="position-absolute top-50 end-0 translate-middle-y me-3 pointer-on-hover" onClick={togglePasswordVisiblity}>
+									{passwordShown ? <FaRegEyeSlash size={25} /> : <FaRegEye size={25} />}
+								</span>
+							</div>
 							<ErrorMessage name="password" component="div" className="text-danger" />
 						</div>
 						<br />

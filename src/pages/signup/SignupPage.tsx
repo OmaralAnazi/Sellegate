@@ -3,10 +3,15 @@ import * as Yup from "yup";
 import { Container } from "react-bootstrap";
 import FormButton from "../../components/FormButton";
 import useAuth from "../../hooks/useAuth";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const SignupPage = () => {
 	const initialValues = { username: "", email: "", password: "", confirmPassword: "" };
+	const [passwordShown, setPasswordShown] = useState(false);
 	const { handleSignup } = useAuth();
+
+	const togglePasswordVisiblity = () => setPasswordShown(!passwordShown);
 
 	const validationSchema = Yup.object().shape({
 		username: Yup.string()
@@ -53,14 +58,24 @@ const SignupPage = () => {
 
 						<div className="form-group">
 							<label htmlFor="password">Password</label>
-							<Field type="password" name="password" className="form-control" />
+							<div className="position-relative">
+								<Field type={passwordShown ? "text" : "password"} name="password" className="form-control" />
+								<span className="position-absolute top-50 end-0 translate-middle-y me-3 pointer-on-hover" onClick={togglePasswordVisiblity}>
+									{passwordShown ? <FaRegEyeSlash size={25} /> : <FaRegEye size={25} />}
+								</span>
+							</div>
 							<ErrorMessage name="password" component="div" className="text-danger" />
 						</div>
 						<br />
 
 						<div className="form-group">
 							<label htmlFor="confirmPassword">Confirm Password</label>
-							<Field type="password" name="confirmPassword" className="form-control" />
+							<div className="position-relative">
+								<Field type={passwordShown ? "text" : "password"} name="confirmPassword" className="form-control" />
+								<span className="position-absolute top-50 end-0 translate-middle-y me-3 pointer-on-hover" onClick={togglePasswordVisiblity}>
+									{passwordShown ? <FaRegEyeSlash size={25} /> : <FaRegEye size={25} />}
+								</span>
+							</div>
 							<ErrorMessage name="confirmPassword" component="div" className="text-danger" />
 						</div>
 						<br />
