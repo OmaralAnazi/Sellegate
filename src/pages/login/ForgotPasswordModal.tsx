@@ -2,6 +2,7 @@ import { Modal, Button } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormButton from "../../components/FormButton";
+import { toast } from "react-toastify";
 
 interface ForgotPasswordModalProps {
 	show: boolean;
@@ -19,11 +20,11 @@ const ForgotPasswordModal = ({ show, onClose }: ForgotPasswordModalProps) => {
 	});
 
 	const handleSubmit = (values: { email: string }, { setSubmitting, resetForm }: any) => {
-		console.log("Submitting forgot password form with email:", values.email);
-		// Here, you'd typically handle the sending of the reset link
+		// TODO: implement this in the backend, and use it here!
+		toast.info("If the email is registered, you will receive a password reset link.");
 		resetForm();
 		setSubmitting(false);
-		onClose(); // Optionally move this call to only occur on successful API response
+		onClose();
 	};
 
 	return (
