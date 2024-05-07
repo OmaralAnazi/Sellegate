@@ -29,7 +29,7 @@ function PaymentHistoryPage() {
 					{payments.map((payment) => (
 						<tr key={payment.id}>
 							<td>{payment.itemName}</td>
-							<td>${payment.totalPrice.toFixed(2)}</td>
+							<td>{payment.totalPrice.toFixed(2)} SAR</td>
 							<td>{new Date(payment.createdAt).toLocaleDateString()}</td>
 						</tr>
 					))}
