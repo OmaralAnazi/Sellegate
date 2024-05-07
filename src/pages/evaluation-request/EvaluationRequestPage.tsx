@@ -20,7 +20,7 @@ function EvaluationRequestPage() {
 	const validationSchema = Yup.object().shape({
 		name: Yup.string().required("This field is required"),
 		message: Yup.string().required("This field is required"),
-		price: Yup.number().required("This field is required"),
+		price: Yup.number().positive("Price must be a positive number").moreThan(0).required("Price is required"),
 	});
 
 	const handleSendingAssessment = async (values: { name: string; message: string; price: number }, { setSubmitting }: any) => {
