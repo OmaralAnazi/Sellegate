@@ -1,7 +1,7 @@
 import { Modal, Button } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import FormButton from "../../components/FormButton"; // Ensure the path is correct
+import FormButton from "../../components/FormButton";
 
 interface ForgotPasswordModalProps {
 	show: boolean;
@@ -12,7 +12,10 @@ const ForgotPasswordModal = ({ show, onClose }: ForgotPasswordModalProps) => {
 	const initialValues = { email: "" };
 
 	const validationSchema = Yup.object({
-		email: Yup.string().email("Invalid email address").required("Email is required"),
+		email: Yup.string()
+			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
+			.email("Invalid email address")
+			.required("Email is required"),
 	});
 
 	const handleSubmit = (values: { email: string }, { setSubmitting, resetForm }: any) => {

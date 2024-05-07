@@ -10,11 +10,18 @@ const SignupPage = () => {
 
 	const validationSchema = Yup.object().shape({
 		username: Yup.string()
-			.matches(/^[A-Za-z]+$/, "Only letters are allowed")
+			.matches(/^[A-Za-z]+$/, "Only English letters are allowed")
 			.required("Username is requierd"),
-		email: Yup.string().email("Invalid email").required("Email is required"),
-		password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters long"),
+		email: Yup.string()
+			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
+			.email("Invalid email")
+			.required("Email is required"),
+		password: Yup.string()
+			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
+			.required("Password is required")
+			.min(6, "Password must be at least 6 characters long"),
 		confirmPassword: Yup.string()
+			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
 			.oneOf([Yup.ref("password")], "Passwords must match")
 			.required("Confirm password is required"),
 	});

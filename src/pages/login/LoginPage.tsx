@@ -15,8 +15,13 @@ const LoginPage = () => {
 	const hideModal = () => setShowForgotPassword(false);
 
 	const validationSchema = Yup.object().shape({
-		email: Yup.string().email("Invalid email").required("Email is required"),
-		password: Yup.string().required("Password is required"),
+		email: Yup.string()
+			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
+			.email("Invalid email")
+			.required("Email is required"),
+		password: Yup.string()
+			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
+			.required("Password is required"),
 	});
 
 	const handleSubmit = async (values: { email: string; password: string }, { setSubmitting }: any) => {
