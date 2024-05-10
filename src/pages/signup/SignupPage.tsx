@@ -15,8 +15,8 @@ const SignupPage = () => {
 
 	const validationSchema = Yup.object().shape({
 		username: Yup.string()
-			.matches(/^[A-Za-z]+$/, "Only English letters are allowed")
-			.required("Username is requierd"),
+			.matches(/^[A-Za-z0-9_]+$/, "Username can only contain English letters, numbers, and underscores")
+			.required("Username is required"),
 		email: Yup.string()
 			.matches(/^[\x00-\x7F]+$/, "Password must contain only ASCII characters")
 			.email("Invalid email")

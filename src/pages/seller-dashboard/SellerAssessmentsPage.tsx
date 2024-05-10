@@ -67,7 +67,7 @@ function SellerAssessmentsPage() {
 					{assessments.map((assessment) => (
 						<tr key={assessment.id}>
 							<td>{assessment.name}</td>
-							<td>${assessment.price}</td>
+							<td>{assessment.price} SAR</td>
 							<td>{new Date(assessment.createdAt).toLocaleDateString()}</td>
 							<td className="d-flex justify-content-around">
 								<FcViewDetails

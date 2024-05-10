@@ -67,7 +67,7 @@ function ItemForm({ initialValues, onSubmit, formTitle, buttonText }: ItemFormPr
 								<Row>
 									<Col md={12}>
 										<div className="form-group">
-											<label htmlFor="delegationState">Receive assessment requests from evalouters</label>
+											<label htmlFor="delegationState">Receive assessment requests from evaluator</label>
 											<br />
 											<Field as="select" name="delegationState" style={{ width: "100%" }}>
 												<option value={DelegationStates.PENDING}>Allow</option>
