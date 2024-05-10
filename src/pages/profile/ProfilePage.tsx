@@ -20,6 +20,7 @@ function ProfilePage({ userToPreview }: ProfilePageProps) {
 	const [showBioModal, setShowBioModal] = useState(false);
 	const imagePlaceHolder = "/images/user-placeholder.png";
 	const navigate = useNavigate();
+	const upgradeAccountFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeYAX2a9oOIgh7GYL8hUat1LVt_oFn0G314plhLPPYO8h6pjA/viewform";
 
 	const handlePaymentHistory = () => {
 		navigate("/payment-history");
@@ -58,7 +59,11 @@ function ProfilePage({ userToPreview }: ProfilePageProps) {
 			<p className="text-muted">{userToPreview?.email || email}</p>
 			{!userToPreview && !isEvaluator && (
 				<p>
-					If you want to upgrade to Evaluator. Please <a href="#">click here</a> and fill out the form.
+					If you want to upgrade to Evaluator. Please{" "}
+					<a href={upgradeAccountFormUrl} target="_blank">
+						click here
+					</a>{" "}
+					and fill out the form.
 				</p>
 			)}
 			{userToPreview && <p style={{ fontSize: "1.15rem" }}>{userToPreview.evaluatorProfile.bio}</p>}
@@ -88,7 +93,8 @@ function ProfilePage({ userToPreview }: ProfilePageProps) {
 					onClick: () => {
 						handleLogout();
 						setShowLogoutModal(false);
-				}}}
+					},
+				}}
 			/>
 		</Container>
 	);
