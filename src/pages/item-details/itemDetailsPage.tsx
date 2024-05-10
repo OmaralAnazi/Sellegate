@@ -28,9 +28,11 @@ function ItemDetailsPage() {
 
 	useEffect(() => {
 		if (!id) return;
-		getItem(id).then((item) => setItem(item));
-		if (!item || !item.evaluatorId) return;
-		getUserProfile(item.evaluatorId).then((evaluator) => setEvaluatorName(evaluator.username));
+		getItem(id).then((item) => {
+			setItem(item);
+			if (!item || !item.evaluatorId) return;
+			getUserProfile(item.evaluatorId).then((evaluator) => setEvaluatorName(evaluator.username));
+		});
 	}, []);
 
 	if (!item)
