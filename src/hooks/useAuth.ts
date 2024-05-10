@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import useAuthStore from "../stores/userStore";
 
 const useAuth = () => {
-	const { login, signup } = useAPI();
+	const { login, signup, logout } = useAPI();
 	const setUser = useAuthStore((state) => state.setUser);
 	const resetUser = useAuthStore((state) => state.resetUser);
 	const navigate = useNavigate();
@@ -12,10 +12,10 @@ const useAuth = () => {
 	const handleSignup = async (values: { username: string; email: string; password: string; confirmPassword: string }) => {
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 		try {
-			const userData = await signup(values);
-			console.log(userData);
+			const { confirmPassword, ...signupData } = values;
+			const userData = await signup(signupData);
 			setUser(userData);
-			// log user to intercom here...
+			// TODO: log user to intercom here...
 			toast.success("Logged in successfully");
 			navigate("/explore");
 		} catch (ex: any) {
@@ -28,7 +28,7 @@ const useAuth = () => {
 		try {
 			const userData = await login(values);
 			setUser(userData);
-			// log user to intercom here...
+			// TODO: log user to intercom here...
 			toast.success("Logged in successfully");
 			navigate("/explore");
 		} catch (ex: any) {
@@ -37,6 +37,7 @@ const useAuth = () => {
 	};
 
 	const handleLogout = async () => {
+		await logout();
 		resetUser();
 		navigate("/login");
 	};

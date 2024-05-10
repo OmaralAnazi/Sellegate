@@ -19,7 +19,9 @@ function SellerDashboardPage() {
 	};
 
 	useEffect(() => {
-		getUserProducts().then((items) => setUserProducts(items));
+		try {
+			getUserProducts().then((items) => setUserProducts(items));
+		} catch (ex: any) {}
 	}, []);
 
 	return (
