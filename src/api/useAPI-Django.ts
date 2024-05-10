@@ -49,6 +49,17 @@ const useAPIDjango = () => {
 		}
 	};
 
+	const relogin = async (): Promise<AuthResponse> => {
+		try {
+			const response = await api.get("/auth/token-status/");
+			const userData: AuthResponse = { ...response.data.user_details, isEvaluator: response.data.user_details.is_evaluator };
+			return userData;
+		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
+			throw new Error("An unexpected error occurred during log in.");
+		}
+	};
+
 	const logout = async (): Promise<void> => {
 		try {
 			await api.post("/auth/logout/");
@@ -219,6 +230,7 @@ const useAPIDjango = () => {
 	return {
 		signup,
 		login,
+		relogin,
 		logout,
 		getUserProfile,
 		updateUser,

@@ -41,6 +41,15 @@ const useAPIJsonServer = () => {
 		}
 	};
 
+	const relogin = async (): Promise<AuthResponse> => {
+		try {
+			const response = await axios.get(`${API_URL}/users/${userId}`);
+			return response.data;
+		} catch (ex: any) {
+			throw ex;
+		}
+	};
+
 	const logout = async (): Promise<void> => {
 		// nothing to do for this fake backend...
 	};
@@ -241,6 +250,7 @@ const useAPIJsonServer = () => {
 	return {
 		signup,
 		login,
+		relogin,
 		logout,
 		getUserProfile,
 		updateUser,

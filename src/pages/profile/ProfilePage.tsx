@@ -5,7 +5,7 @@ import useAuthStore from "../../stores/userStore";
 import { useNavigate } from "react-router-dom";
 import { MdVerified } from "react-icons/md";
 import { AuthResponse as User } from "../../api/useAPI";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditBioModal from "../../components/EditBioModal";
 import CustomAlert from "../../components/CustomAlert";
 
@@ -16,7 +16,7 @@ interface ProfilePageProps {
 function ProfilePage({ userToPreview }: ProfilePageProps) {
 	const { username, email, isEvaluator, evaluatorProfile } = useAuthStore();
 	const [showLogoutModal, setShowLogoutModal] = useState(false);
-	const { handleLogout } = useAuth();
+	const { handleLogout, handleRelogin } = useAuth();
 	const [showBioModal, setShowBioModal] = useState(false);
 	const imagePlaceHolder = "/images/user-placeholder.png";
 	const navigate = useNavigate();
@@ -31,6 +31,10 @@ function ProfilePage({ userToPreview }: ProfilePageProps) {
 			Verified Evaluator by Sellegate
 		</Tooltip>
 	);
+
+	useEffect(() => {
+		handleRelogin();
+	}, []);
 
 	return (
 		<Container className="mt-5 border p-3 shadow text-center" style={{ maxWidth: "720px", borderRadius: "10px", position: "relative" }}>

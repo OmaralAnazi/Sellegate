@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import useAuthStore from "../stores/userStore";
 
 const useAuth = () => {
-	const { login, signup, logout } = useAPI();
+	const { login, relogin, signup, logout } = useAPI();
 	const setUser = useAuthStore((state) => state.setUser);
 	const resetUser = useAuthStore((state) => state.resetUser);
 	const navigate = useNavigate();
@@ -36,6 +36,17 @@ const useAuth = () => {
 		}
 	};
 
+	const handleRelogin = async () => {
+		try {
+			const userData = await relogin();
+			console.log(userData);
+			setUser(userData);
+			// TODO: relog user to intercom here...
+		} catch (ex: any) {
+			await handleLogout();
+		}
+	};
+
 	const handleLogout = async () => {
 		await logout();
 		resetUser();
@@ -45,6 +56,7 @@ const useAuth = () => {
 	return {
 		handleSignup,
 		handleLogin,
+		handleRelogin,
 		handleLogout,
 	};
 };
