@@ -1,19 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Card, ListGroup, Badge } from "react-bootstrap";
-import useItemsStore from "../../stores/itemsStore";
 import CustomButton from "../../components/CustomButton";
 import ItemPlaceholderImg from "/images/item-placeholder.jpg";
 import useAuthStore from "../../stores/userStore";
-import useAPI, { DelegationStates } from "../../api/useAPI";
+import useAPI, { DelegationStates, ItemResponse as Item } from "../../api/useAPI";
 import { useEffect, useState } from "react";
 
 function ItemDetailsPage() {
-	const { getUserProfile } = useAPI();
+	const { getItem, getUserProfile } = useAPI();
 	const { id } = useParams<{ id: string }>();
+	const [item, setItem] = useState<Item | null>(null);
 	const { isEvaluator } = useAuthStore();
 	const [evaluatorName, setEvaluatorName] = useState("");
-	const getItem = useItemsStore((state) => state.getItem);
-	const item = getItem(id);
 	const navigate = useNavigate();
 
 	const handleBuy = () => {
@@ -29,6 +27,8 @@ function ItemDetailsPage() {
 	};
 
 	useEffect(() => {
+		if (!id) return;
+		getItem(id).then((item) => setItem(item));
 		if (!item || !item.evaluatorId) return;
 		getUserProfile(item.evaluatorId).then((evaluator) => setEvaluatorName(evaluator.username));
 	}, []);

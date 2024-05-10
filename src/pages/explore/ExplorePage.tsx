@@ -1,14 +1,10 @@
-import { useEffect } from "react";
-import useAPI from "../../api/useAPI";
+import { useEffect, useState } from "react";
+import useAPI, { ItemResponse as Item } from "../../api/useAPI";
 import { Row, Container } from "react-bootstrap";
 import ItemCard from "./ItemCard";
-import useItemsStore from "../../stores/itemsStore";
 
 const ExplorePage = () => {
-	const { items, setItems } = useItemsStore((state) => ({
-		items: state.items,
-		setItems: state.setItems,
-	}));
+	const [items, setItems] = useState<Item[]>([]);
 	const { getItemsToExplore } = useAPI();
 
 	useEffect(() => {
