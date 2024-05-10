@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import useAPI from "../api/useAPI";
 import { toast } from "react-toastify";
 import useAuthStore from "../stores/userStore";
+import useIntercom from "./useIntercom";
 
 const useAuth = () => {
 	const { login, relogin, signup, logout } = useAPI();
+	const { loginIntercom, logoutIntercom } = useIntercom();
 	const setUser = useAuthStore((state) => state.setUser);
 	const resetUser = useAuthStore((state) => state.resetUser);
 	const navigate = useNavigate();
@@ -15,7 +17,7 @@ const useAuth = () => {
 			const { confirmPassword, ...signupData } = values;
 			const userData = await signup(signupData);
 			setUser(userData);
-			// TODO: log user to intercom here...
+			loginIntercom();
 			toast.success("Logged in successfully");
 			navigate("/explore");
 		} catch (ex: any) {
@@ -28,7 +30,8 @@ const useAuth = () => {
 		try {
 			const userData = await login(values);
 			setUser(userData);
-			// TODO: log user to intercom here...
+			loginIntercom();
+			console.log("test");
 			toast.success("Logged in successfully");
 			navigate("/explore");
 		} catch (ex: any) {
@@ -40,16 +43,21 @@ const useAuth = () => {
 		try {
 			const userData = await relogin();
 			setUser(userData);
-			// TODO: relog user to intercom here...
+			loginIntercom();
 		} catch (ex: any) {
 			await handleLogout();
 		}
 	};
 
 	const handleLogout = async () => {
-		await logout();
-		resetUser();
-		navigate("/login");
+		try {
+			await logout();
+			logoutIntercom();
+			resetUser();
+			navigate("/login");
+		} catch (ex: any) {
+			toast.error(ex.message);
+		}
 	};
 
 	return {
