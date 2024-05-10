@@ -39,7 +39,6 @@ const useAuth = () => {
 	const handleRelogin = async () => {
 		try {
 			const userData = await relogin();
-			console.log(userData);
 			setUser(userData);
 			// TODO: relog user to intercom here...
 		} catch (ex: any) {

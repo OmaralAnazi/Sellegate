@@ -5,7 +5,6 @@ const HomePage = () => {
 	const navigate = useNavigate();
 
 	const hanldeStartBtn = () => {
-		console.log("'Get Started' btn is clicked!");
 		navigate("/explore");
 	};
 
