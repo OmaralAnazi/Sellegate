@@ -19,9 +19,14 @@ function SellerDashboardPage() {
 	};
 
 	useEffect(() => {
-		try {
-			getUserProducts().then((items) => setUserProducts(items));
-		} catch (ex: any) {}
+		const fetchUserProducts = async () => {
+			try {
+				const items = await getUserProducts();
+				setUserProducts(items);
+			} catch (ex) {}
+		};
+
+		fetchUserProducts();
 	}, []);
 
 	return (

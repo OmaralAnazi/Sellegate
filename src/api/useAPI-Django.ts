@@ -22,7 +22,6 @@ const useAPIDjango = () => {
 			const userData: AuthResponse = { ...response.data, isEvaluator: response.data.is_evaluator };
 			return userData;
 		} catch (ex: any) {
-			console.log(ex);
 			if (ex?.response?.data?.error?.details) {
 				const errorMessages = [];
 
@@ -33,6 +32,7 @@ const useAPIDjango = () => {
 
 				throw new Error(errorMessages.join(" "));
 			}
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during sign up.");
 		}
 	};
@@ -43,7 +43,7 @@ const useAPIDjango = () => {
 			const userData: AuthResponse = { ...response.data, isEvaluator: response.data.is_evaluator };
 			return userData;
 		} catch (ex: any) {
-			if (ex?.code === "ERR_BAD_REQUEST") throw new Error("The email or password is wrong");
+			if (ex?.code === "ERR_BAD_REQUEST") throw new Error("Invalid email or password");
 			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during log in.");
 		}
@@ -64,6 +64,7 @@ const useAPIDjango = () => {
 		try {
 			await api.post("/auth/logout/");
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during loginng out.");
 		}
 	};
@@ -74,6 +75,7 @@ const useAPIDjango = () => {
 			const userData: AuthResponse = { ...response.data, isEvaluator: response.data.is_evaluator };
 			return userData;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching user data.");
 		}
 	};
@@ -82,6 +84,7 @@ const useAPIDjango = () => {
 		try {
 			await api.patch(`/auth/update-user/`, values);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during updating user data.");
 		}
 	};
@@ -92,6 +95,7 @@ const useAPIDjango = () => {
 			const items: ItemResponse[] = response.data.map((item: any) => reformatItemResponse(item));
 			return items;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching items data.");
 		}
 	};
@@ -102,6 +106,7 @@ const useAPIDjango = () => {
 			const items: ItemResponse[] = response.data.map((item: any) => reformatItemResponse(item));
 			return items;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching items data.");
 		}
 	};
@@ -112,6 +117,7 @@ const useAPIDjango = () => {
 			const item: ItemResponse = reformatItemResponse(response.data);
 			return item;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching item data.");
 		}
 	};
@@ -122,6 +128,7 @@ const useAPIDjango = () => {
 			const items: ItemResponse[] = response.data.map((item: any) => reformatItemResponse(item));
 			return items;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching items data.");
 		}
 	};
@@ -131,6 +138,7 @@ const useAPIDjango = () => {
 			const itemData = reformatItemRequest(item);
 			await api.post("/items/post-item/", itemData);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during posting a new item.");
 		}
 	};
@@ -140,6 +148,7 @@ const useAPIDjango = () => {
 			const itemData = reformatItemRequest(values);
 			await api.patch(`/items/update-item/${itemId}/`, itemData);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during updating the item.");
 		}
 	};
@@ -148,7 +157,7 @@ const useAPIDjango = () => {
 		try {
 			await api.delete(`/items/delete-item/${itemId}`);
 		} catch (ex: any) {
-			console.log(ex);
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during deleting the item.");
 		}
 	};
@@ -157,6 +166,7 @@ const useAPIDjango = () => {
 		try {
 			await api.post(`/items/buy/${itemId}/`);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during buying the item.");
 		}
 	};
@@ -167,6 +177,7 @@ const useAPIDjango = () => {
 			const payments: PaymentResponse[] = response.data.map((payment: any) => reformatPaymentResponse(payment));
 			return payments;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching payments data.");
 		}
 	};
@@ -176,8 +187,8 @@ const useAPIDjango = () => {
 			const assessmentData = reformatAssessmentRequest(assessmentRequest);
 			await api.post("/evaluations/new/", assessmentData);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during posting a new assessment.");
-			// what if the current user is not an eval?
 		}
 	};
 
@@ -187,8 +198,8 @@ const useAPIDjango = () => {
 			const assessments: AssessmentResponse[] = response.data.map((assessment: any) => reformatAssessmentResponse(assessment));
 			return assessments;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching assessments data.");
-			// NOTE: u must ensure the current user isEvaluator (otherwise prevet this, and return an error message)
 		}
 	};
 
@@ -200,8 +211,8 @@ const useAPIDjango = () => {
 			const assessments: AssessmentResponse[] = response.data.evaluation_requests.map((assessment: any) => reformatAssessmentResponse(assessment));
 			return assessments;
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during fetching assessments data.");
-			// NOTE: what if the current product not owned by current user...?
 		}
 	};
 
@@ -209,10 +220,8 @@ const useAPIDjango = () => {
 		try {
 			await api.patch(`/evaluations/${assessmentId}/reject/`);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during rejecting the assessment.");
-			// NOTE: what if the current assessment not owned by current user...?
-			// - Assessment Not Found: If the specified assessment ID doesn't exist, you get a 404 error.
-			// - Unauthorized Access: If the current user doesn't own the item linked to the assessment, you get a 403 error.
 		}
 	};
 
@@ -220,10 +229,8 @@ const useAPIDjango = () => {
 		try {
 			await api.patch(`/evaluations/${assessmentId}/accept/`);
 		} catch (ex: any) {
+			if (ex?.response?.data?.error?.message) throw new Error(ex.response.data.error.message);
 			throw new Error("An unexpected error occurred during accepting the assessment.");
-			// NOTE: what if the current assessment not owned by current user...?
-			// - Assessment Not Found: If the specified assessment ID doesn't exist, you get a 404 error.
-			// - Unauthorized Access: If the current user doesn't own the item linked to the assessment, you get a 403 error.
 		}
 	};
 
