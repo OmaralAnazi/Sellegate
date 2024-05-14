@@ -34,7 +34,7 @@ Before setting up the project, ensure you have `npm` and `Node.js` installed on 
 
    ```bash
    git clone https://github.com/OmaralAnazi/Sellegate.git
-   cd sellegate
+   cd Sellegate
    ```
 
 2. Install Dependencies
@@ -55,6 +55,8 @@ Before setting up the project, ensure you have `npm` and `Node.js` installed on 
    _Note: If you decide to use the Django backend setup, ensure you set `VITE_USE_REAL_BACKEND` to true in the `.env` file._
 
 4. Launch the Website
+
+   - Open a new terminal and ensure you are located at the root level of the project directory `.../Sellegate`. Then, run the following command:
 
    ```bash
    npm run dev
