@@ -24,8 +24,8 @@
     },
     {
       "id": "3",
-      "username": "Omar Alanazi",
-      "email": "ixembw@gmail.com",
+      "username": "Omar",
+      "email": "omar@gmail.com",
       "password": "123123",
       "token": "token-0559xiouc",
       "isEvaluator": false,
