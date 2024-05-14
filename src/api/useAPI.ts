@@ -1,7 +1,7 @@
 import useAPIJsonServer from "./useAPI-JsonServer";
 import useAPIDjango from "./useAPI-Django";
 
-const USE_REAL_BACKEND = true;
+const USE_REAL_BACKEND = import.meta.env.VITE_USE_REAL_BACKEND !== "false";
 
 const useAPI = USE_REAL_BACKEND ? useAPIDjango : useAPIJsonServer;
 

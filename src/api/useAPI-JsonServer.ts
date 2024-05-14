@@ -6,7 +6,7 @@ const getNewId = (endpoint: string) => `${endpoint}_${Date.now()}_${Math.floor(M
 
 const useAPIJsonServer = () => {
 	const { id: userId, username } = useAuthStore();
-	const API_URL = "http://localhost:3000"; // Adjust this URL as necessary
+	const API_URL = import.meta.env.VITE_API_URL_JSON_SERVER; 
 
 	const signup = async (signupData: SignupRequest): Promise<AuthResponse> => {
 		try {

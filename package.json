@@ -14,6 +14,7 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "formik": "^2.4.5",
+    "json-server": "^1.0.0-alpha.23",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
@@ -24,6 +25,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-bootstrap": "^0.26.6",
