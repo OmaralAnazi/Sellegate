@@ -50,9 +50,9 @@ Before setting up the project, ensure you have `npm` and `Node.js` installed on 
    npx json-server db.json
    ```
 
-   Alternatively, if you prefer a real backend, please refer to our Django backend setup instructions in this [repository](https://github.com/AymanBerri/Sellegate). However, it may take some time. Therefore, if you want to test the UI, we recommend a quick setup using `JSON-Server`.
+   You can interact with and modify the data directly in the `db.json` file. Alternatively, if you prefer a real backend, please refer to our Django backend setup instructions in this [repository](https://github.com/AymanBerri/Sellegate). However, it may take some time. Therefore, if you want to test the UI, we recommend a quick setup using `JSON-Server`.
 
-   _Note: You can interact with and modify the data directly in the `db.json` file._
+   _Note: If you decide to use the Django backend setup, ensure you set `VITE_USE_REAL_BACKEND` to true in the `.env` file._
 
 4. Launch the Website
 
